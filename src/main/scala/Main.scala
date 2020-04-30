@@ -48,7 +48,7 @@ object Main extends App with LazyLogging {
 
      System.out.println(respJson)
      val jValue = parse(respJson)
-      println((jValue\"data").extract[Data].repository.name)
+      println((jValue\"data").extract[Data].repository.name.get)
       println(jValue)
       val y = json.JsonParser.apply(respJson)
       val q=y.prettyPrint
