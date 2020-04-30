@@ -7,6 +7,15 @@ class QueryBuilder {
     query=query+"user(login:"+log+")"
     this
   }
+  def setRepositoryOwner(login:String):QueryBuilder={
+    var login1= "\\\""+login+"\\\""
+    query=query+s"repositoryOwner(login:$login1)"
+    this
+  }
+  def getRepositoryOwner(repoowner:String):QueryBuilder={
+    query=query+repoowner
+    this
+  }
   def setRepositoryOwnerandName(Owner:String,name:String):QueryBuilder={
     var log= "\\\""+name+"\\\""
     var owner= "\\\""+Owner+"\\\""

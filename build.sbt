@@ -8,8 +8,8 @@ libraryDependencies ++= Seq (
   //logger
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
-  //requests library (DID NOT WORK...)
-  "com.lihaoyi" %% "requests" % "0.5.1",
+  "net.liftweb" %% "lift-json" % "3.4.1",
+
   //http request library that did work
   "org.apache.httpcomponents" % "httpclient" % "4.5.12",
   //json parser

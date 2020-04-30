@@ -1,4 +1,4 @@
-class RepositoryInfo {
+trait RepositoryInfo {
   private var repoQuery="{ "
   def getcreatedAt(): RepositoryInfo ={
     repoQuery=repoQuery+" createdAt "
