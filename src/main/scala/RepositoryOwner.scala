@@ -1,11 +1,15 @@
-class RepositoryOwner extends Repository {
- var ownerquery= "{ "
-  def setRepository(name:String):RepositoryOwner={
+class RepositoryOwner{
+  var repoName:String="{"
+  var ownerquery= "{ "
+  def setRepository(name:String):RepositoryInfo={
     var name1= "\\\""+name+"\\\""
     ownerquery=ownerquery+s"repository(name:${name1})"
-    this
+    new RepositoryInfo() {}
   }
-  override def build():String={
+  def getRepository():RepositoryInfo={
+    new Repository() {}
+  }
+   def build():String={
     ownerquery
   }
 

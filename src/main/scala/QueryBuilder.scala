@@ -1,11 +1,11 @@
 class QueryBuilder {
-  private var query:String= "{"
+  var query:String= "{"
 
-  def setUser(login:String):QueryBuilder={
+  def setUser(login:String):User={
     var log= "\\\""+login+"\\\""
    // println(log)
     query=query+"user(login:"+log+")"
-    this
+    new User(query)
   }
   def setRepositoryOwner(login:String):QueryBuilder={
     var login1= "\\\""+login+"\\\""
@@ -19,7 +19,7 @@ class QueryBuilder {
   def setRepositoryOwnerandName(Owner:String,name:String):QueryBuilder={
     var log= "\\\""+name+"\\\""
     var owner= "\\\""+Owner+"\\\""
-    query=query+s"repository(owner:${owner}name:$log)"
+    query=query+s"repository(owner:${owner},name:$log)"
     this
   }
   def getRepository(repoInfo:String):QueryBuilder={

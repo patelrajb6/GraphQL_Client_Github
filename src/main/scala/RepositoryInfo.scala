@@ -1,5 +1,6 @@
 trait RepositoryInfo {
-  private var repoQuery="{ "
+  protected var repoQuery="{ "
+
   def getcreatedAt(): RepositoryInfo ={
     repoQuery=repoQuery+" createdAt "
     this
@@ -63,9 +64,8 @@ trait RepositoryInfo {
     repoQuery=repoQuery+ "updatedAt "
     this
   }
-
   def build():String={
-    repoQuery=repoQuery+" }"
+    repoQuery=repoQuery+"}"
     repoQuery
   }
 
