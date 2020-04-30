@@ -1,4 +1,4 @@
-class User{
+class User extends RepositoryInfo {
   var userQuery:String="{ "
   def getLocation():User={
    userQuery=userQuery+"location "
@@ -12,7 +12,7 @@ class User{
     userQuery=userQuery+"name "
     this
   }
-  def build():String={
+  override def build():String={
     userQuery=userQuery+" }"
     userQuery
   }
