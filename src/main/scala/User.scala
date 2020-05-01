@@ -1,20 +1,26 @@
-class User extends RepositoryInfo {
-  var userQuery:String="{ "
+class User{
+  var repoQuery="{"
+
   def getLocation():User={
-   userQuery=userQuery+"location "
+    repoQuery=repoQuery+" location "
     this
   }
   def getlogin():User={
-    userQuery=userQuery+"login "
+    repoQuery=repoQuery+" login "
     this
   }
-  def getName():User={
-    userQuery=userQuery+"name "
+  def getname():User={
+    repoQuery=repoQuery+" name "
     this
   }
-  override def build():String={
-    userQuery=userQuery+" }"
-    userQuery
+  def setRepository(repository: Repository):this.type ={
+    repoQuery=repoQuery+s"${repository.build()}"
+    this
+  }
+
+  def build():String={
+   repoQuery=repoQuery+"}"
+   repoQuery
   }
 
 }

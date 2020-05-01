@@ -12,6 +12,7 @@ libraryDependencies ++= Seq (
 
   //http request library that did work
   "org.apache.httpcomponents" % "httpclient" % "4.5.12",
+  "com.typesafe" % "config" % "1.4.0",
   //json parser
   "io.spray" %%  "spray-json" % "1.3.5"
 )
