@@ -10,6 +10,7 @@ import org.junit.Assert._
 import scala.io.Source
 
 class TopicTest extends TestCase{
+  implicit val formats = DefaultFormats
 
   @Test
   def testTopics: Unit ={
@@ -22,7 +23,7 @@ class TopicTest extends TestCase{
         .gettotalCount().setNodeList(new User().getlogin()))) //stargazer contains total count and list of nodes which are user so nested again with login
       .build()  //building the whole query
 
-    val jVal = getJValue(getGqlRequestResponse(topicdemo)).get
+    val jVal = TestTools.getJValue(TestTools.getGqlRequestResponse(topicdemo)).get
     val topicObj = jVal \ "data" \ "topic"
     //    println("\nTOPIC OBJ"+ topicObj)
     val stargazersCon = topicObj.children(1)                                //stargazerCon from response
