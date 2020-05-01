@@ -1,4 +1,5 @@
 trait RepositoryInfo[T<:RepositoryInfo[T]] {
+  //templated type traits so that it returns the type of the subclass
   protected var repoQuery=" "
   def getcreatedAt(): T
   def getDescription(): T

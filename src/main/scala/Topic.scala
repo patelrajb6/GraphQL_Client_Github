@@ -1,8 +1,8 @@
-class Topic(name:String) {
-  var name1="\\\""+name+"\\\""
+class Topic(name:String) {      // the mandatory string for the Topic
+  private var name1="\\\""+name+"\\\""
 
-  var query=s"topic(name:$name1) {"
-  def setStarGrazers(stargazerConnection: StargazerConnection):this.type={
+  private var query=s"topic(name:$name1) {" //building string
+  def setStarGrazers(stargazerConnection: StargazerConnection):this.type={  //has nested stargazer
     query+=s"${stargazerConnection.build()} "
     this
   }
@@ -15,7 +15,7 @@ class Topic(name:String) {
     this
   }
 
-  def build():String={
+   def build():String={
     query=query+"}"
     query
   }
