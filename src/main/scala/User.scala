@@ -1,6 +1,7 @@
-class User{
-  var repoQuery="{"
+class User{   //the user class
+  private var repoQuery="{"
 
+  //attributes that can be grabbed from the api
   def getLocation():User={
     repoQuery=repoQuery+" location "
     this
@@ -13,7 +14,7 @@ class User{
     repoQuery=repoQuery+" name "
     this
   }
-  def setRepository(repository: Repository):this.type ={
+  def setRepository(repository: Repository):this.type ={    //has nested repository
     repoQuery=repoQuery+s"${repository.build()}"
     this
   }
