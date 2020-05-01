@@ -1,11 +1,13 @@
-class RepositoryOwner extends Repository {
- var ownerquery= "{ "
-  def setRepository(name:String):RepositoryOwner={
-    var name1= "\\\""+name+"\\\""
-    ownerquery=ownerquery+s"repository(name:${name1})"
+class RepositoryOwner(login:String){    //the Repository owner has a mandatory field of login
+  private var loginName = "\\\""+login+"\\\""
+  private var ownerquery=s"repositoryOwner(login:$loginName) { "  //setting login
+  def setRepository(repository: Repository):RepositoryOwner={   // repository owner has nested repository
+    ownerquery=ownerquery+s"${repository.build()} "
     this
   }
-  override def build():String={
+
+  def build():String={    //building the query for Repository owner
+    ownerquery+="}"
     ownerquery
   }
 
