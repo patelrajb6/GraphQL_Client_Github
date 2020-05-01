@@ -1,15 +1,13 @@
-class RepositoryOwner{
-  var repoName:String="{"
-  var ownerquery= "{ "
-  def setRepository(name:String):RepositoryInfo={
-    var name1= "\\\""+name+"\\\""
-    ownerquery=ownerquery+s"repository(name:${name1})"
-    new RepositoryInfo() {}
+class RepositoryOwner(login:String){
+  var loginName = "\\\""+login+"\\\""
+  var ownerquery=s"repositoryOwner(login:$loginName) { "
+  def setRepository(repository: Repository):RepositoryOwner={
+    ownerquery=ownerquery+s"${repository.build()} "
+    this
   }
-  def getRepository():RepositoryInfo={
-    new Repository() {}
-  }
-   def build():String={
+
+  def build():String={
+    ownerquery+="}"
     ownerquery
   }
 

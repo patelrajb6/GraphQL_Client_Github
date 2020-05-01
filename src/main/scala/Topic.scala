@@ -1,29 +1,20 @@
-class Topic {
-  var query="{ stargazers("
-  def setafter(after:String):Topic={
-    var log= "\\\""+after+"\\\""
-    query=query+s"after:$log"
-    this
-  }
-  def setbefore(before:String):Topic={
-    var log= "\\\""+before+"\\\""
-    query=query+s"before:$log"
-    this
-  }
-  def setfirst(first:Int):Topic={
+class Topic(name:String) {
+  var name1="\\\""+name+"\\\""
 
-    query=query+s"first:$first"
+  var query=s"topic(name:$name1) {"
+  def setStarGrazers(stargazerConnection: StargazerConnection):this.type={
+    query+=s"${stargazerConnection.build()} "
     this
   }
-  def setlast(last:Int):Topic={
+  def getname():this.type={
+    query+=" name"
+    this
+  }
+  def getID():this.type={
+    query+=" id "
+    this
+  }
 
-    query=query+s"last:$last"
-    this
-  }
-  def getname():Topic={
-    query=query+"name"
-    this
-  }
   def build():String={
     query=query+"}"
     query
