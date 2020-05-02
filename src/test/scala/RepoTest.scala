@@ -1,39 +1,33 @@
 import junit.framework.TestCase
-import net.liftweb.json.JsonAST.{JField, JValue}
-import net.liftweb.json.{DefaultFormats, parse}
-import org.apache.http.client.methods.{CloseableHttpResponse, HttpPost}
-import org.apache.http.entity.StringEntity
-import org.apache.http.impl.client.HttpClientBuilder
+import net.liftweb.json.{DefaultFormats}
 import org.junit.Test
 import org.junit.Assert._
 
-import scala.io.Source
 class RepoTest extends TestCase{
   implicit val formats = DefaultFormats
 
-  // change test to test repoOwner
   @Test
-  def testCreatedAt(){
-    val createdAtDemo = new QueryBuilder()
-      .setRepositoryOwnerQuery(new RepositoryOwner("ramirez915")
-        .setRepository(new Repository("BioE-CS-494")
-          .getcreatedAt().getDescription().getname()))
+  def testBasicRepoQuery(): Unit ={
+    val owner = "patelrajb6"
+    val repoName = "Baccarat_Game"
+
+    //Repository only query
+    val repoDemo= new QueryBuilder()
+      .setRepositoryQuery(new Repository(owner,repoName)  //setting the query needs a repository object
+        .getname().getpushedAt().getupdatedAt())//repository has name and description
       .build()
 
-    val jVal = TestTools.getJValue(TestTools.getGqlRequestResponse(createdAtDemo)).get
-    val createdAtObj = jVal \ "data" \ "repositoryOwner" \ "repository"
-//    println("\nCREATED AT OBJ"+ createdAtObj)
-    val createdAt = createdAtObj.children(0).extract[String]    // this extracts the created at value from jVal
-    val description = createdAtObj.children(1).extract[String]
-    val name = createdAtObj.children(2).extract[String]
-//    println(createdAt)
-//    println(description)
-//    println(name)
-    val root = jVal.extract[RootInterface]
+    val jVal = Tools.getJValue(Tools.getGqlRequestResponse(repoDemo)).get
+    val repoObj = jVal \ "data" \ "repository"
+    val nameGot = repoObj.children(0).extract[String]
+    val pushedGot = repoObj.children(1).extract[String]
+    val updateGot = repoObj.children(2).extract[String]
 
-    // assert what was queried for
-    assertTrue(root.data.repositoryOwner.get.repository.createdAt.get == createdAt)
-    assertTrue(root.data.repositoryOwner.get.repository.description.get == description)
-    assertTrue(root.data.repositoryOwner.get.repository.name.get == name)
+    //extract
+    val extracted = repoObj.extract[RepositoryCase]
+
+    assertEquals(nameGot,extracted.name.get)
+    assertEquals(pushedGot,extracted.pushedAt.get)
+    assertEquals(updateGot,extracted.updatedAt.get)
   }
 }

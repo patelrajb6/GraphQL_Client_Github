@@ -6,7 +6,7 @@ import org.apache.http.impl.client.HttpClientBuilder
 
 import scala.io.Source
 
-object TestTools {
+object Tools {
   implicit val formats = DefaultFormats
   val BASE_GHQL_URL = "https://api.github.com/graphql"
   // val TOKEN = "b24f584000aa47629266eac2857f9d0ab618ddde"

@@ -6,6 +6,17 @@ class RepositoryOwner(login:String){    //the Repository owner has a mandatory f
     this
   }
 
+  // added to be able to get the login info and id of repo owner
+  def getLogin(): RepositoryOwner ={
+    ownerquery=ownerquery+" login "
+    this
+  }
+
+  def getId(): RepositoryOwner ={
+    ownerquery=ownerquery+" id "
+    this
+  }
+
   def build():String={    //building the query for Repository owner
     ownerquery+="}"
     ownerquery
