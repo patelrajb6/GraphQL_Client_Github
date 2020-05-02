@@ -1,5 +1,5 @@
 import junit.framework.TestCase
-import net.liftweb.json.{DefaultFormats}
+import net.liftweb.json.DefaultFormats
 import org.junit.Test
 import org.junit.Assert._
 
