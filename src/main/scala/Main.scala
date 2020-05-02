@@ -23,7 +23,7 @@ object Main extends App with LazyLogging {
     .getname().setStarGrazers(new StargazerConnection(first = 100) //topic name consists of stargazers so its nested
     .gettotalCount().setNodeList(new User().getlogin()))) //stargazer contains total count and list of nodes which are user so nested again with login
     .build()  //building the whole query
-  println(topicdemo)
+ // println(topicdemo)
 
   //REpository only query
   val repoDemo= new QueryBuilder()
@@ -44,7 +44,7 @@ object Main extends App with LazyLogging {
   httpUriRequest.addHeader("Accept", "application/json")
   val ss= "{\"query\":\"" + temp + "\"}"
 //  val pp="{\"query\":\"" + topicdemo+ "\"}"
-val pp="{\"query\":\"" + ownerdemo+ "\"}"
+val pp="{\"query\":\"" + topicdemo+ "\"}"
   // println (pp)
   val gqlReq = new StringEntity(pp )
   //  val gqlReq = new StringEntity(ss )
@@ -58,16 +58,18 @@ val pp="{\"query\":\"" + ownerdemo+ "\"}"
     case x if x != null => {
       //println("THIS IS X "+ x)
       val respJson = Source.fromInputStream(x.getContent).getLines.mkString
+      //following function converts the json into scala case class object
+      var demo =new JsonToScala(respJson).parseJson().getTopicQueryCaseClass()
 
-      System.out.println(respJson)
+      System.out.println(demo)
       val jValue = parse(respJson)
 //      println((jValue\"data").extract[Data].repository.name.get)
 //      println(jValue)
-      println((jValue.extract[RootInterface]))
+      //println((jValue.extract[RootInterface]))
 //      println(jValue)
       val y = json.JsonParser.apply(respJson)
       val q=y.prettyPrint
-//      print(q)
+      print(q)
 
 
     }
