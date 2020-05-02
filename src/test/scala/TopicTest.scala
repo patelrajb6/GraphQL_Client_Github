@@ -7,7 +7,7 @@ class TopicTest extends TestCase{
   implicit val formats = DefaultFormats
 
   @Test
-  def testTopics: Unit ={
+  def testTopics(): Unit ={
     val topicName = "android"
     val firstAmount = 2
     //the topic query builder
