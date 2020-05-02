@@ -8,6 +8,7 @@ import net.liftweb.json._
 
 
 object Main extends App with LazyLogging {
+
   logger.info("logging hello!!!!")
   implicit val formats = DefaultFormats
   val BASE_GHQL_URL = "https://api.github.com/graphql"
@@ -22,14 +23,28 @@ object Main extends App with LazyLogging {
     .getname().setStarGrazers(new StargazerConnection(first = 100) //topic name consists of stargazers so its nested
     .gettotalCount().setNodeList(new User().getlogin()))) //stargazer contains total count and list of nodes which are user so nested again with login
     .build()  //building the whole query
-  println(topicdemo)
+ // println(topicdemo)
 
+  //REpository only query
+  val repoDemo= new QueryBuilder()
+    .setRepositoryQuery(new Repository("patelrajb6","Baccarat_Game")  //setting the query needs a repository object
+      .getname().getDescription())  //repository has name and description
+    .build()
+
+  val ownerdemo= new QueryBuilder()
+    .setRepositoryOwnerQuery(new RepositoryOwner("patelrajb6")  //repository owner has repository nested
+      .setRepository(new Repository("Baccarat_Game")    //needs name of the particular repository to search for
+        .getcreatedAt().getname().getDescription().gethasIssuesEnabled())) //all the getter of repository
+    .build()    //building the query
+//  println(ownerdemo)
+ // println(repoDemo)
   val client = HttpClientBuilder.create.build
   val httpUriRequest = new HttpPost(BASE_GHQL_URL)
   httpUriRequest.addHeader("Authorization", "Bearer "+ TOKEN)
   httpUriRequest.addHeader("Accept", "application/json")
   val ss= "{\"query\":\"" + temp + "\"}"
-  val pp="{\"query\":\"" + topicdemo+ "\"}"
+//  val pp="{\"query\":\"" + topicdemo+ "\"}"
+val pp="{\"query\":\"" + topicdemo+ "\"}"
   // println (pp)
   val gqlReq = new StringEntity(pp )
   //  val gqlReq = new StringEntity(ss )
@@ -43,16 +58,18 @@ object Main extends App with LazyLogging {
     case x if x != null => {
       //println("THIS IS X "+ x)
       val respJson = Source.fromInputStream(x.getContent).getLines.mkString
+      //following function converts the json into scala case class object
+      var demo =new JsonToScala(respJson).parseJson().getTopicQueryCaseClass()
 
-      System.out.println(respJson)
+      System.out.println(demo)
       val jValue = parse(respJson)
 //      println((jValue\"data").extract[Data].repository.name.get)
 //      println(jValue)
-      println((jValue.extract[RootInterface]))
+      //println((jValue.extract[RootInterface]))
 //      println(jValue)
       val y = json.JsonParser.apply(respJson)
       val q=y.prettyPrint
-//      print(q)
+      print(q)
 
 
     }
