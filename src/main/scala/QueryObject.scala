@@ -6,6 +6,11 @@ import org.apache.http.impl.client.HttpClientBuilder
 
 import scala.io.Source
 
+/*
+Companion object that is used for communicating to Github (making queries)
+allows user to ser own headers consisting of their own name,
+value, and token or to use the default values and token provided
+ */
 class QueryObject {
   implicit val formats = DefaultFormats
   private val BASE_GHQL_URL = "https://api.github.com/graphql"

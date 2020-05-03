@@ -4,10 +4,11 @@ import org.junit.Test
 import org.junit.Assert._
 
 class RepoTest extends TestCase{
-  implicit val formats = DefaultFormats
+  private implicit val formats = DefaultFormats
 
   @Test
   def testBasicRepoQuery(): Unit ={
+    // set up variables to use on query
     val owner = "patelrajb6"
     val repoName = "Baccarat_Game"
 
@@ -17,6 +18,7 @@ class RepoTest extends TestCase{
         .getname().getpushedAt().getupdatedAt())//repository has name and description
       .build()
 
+    // extract query data for comparision
     val jVal = QueryObject().addHeaders().getGqlRequestResponse(repoDemo).getJValue()
     val repoObj = jVal \ "data" \ "repository"
     val nameGot = repoObj.children(0).extract[String]
