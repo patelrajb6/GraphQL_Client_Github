@@ -1,4 +1,7 @@
-class RepositoryOwner(login:String){    //the Repository owner has a mandatory field of login
+import com.typesafe.scalalogging.LazyLogging
+
+class RepositoryOwner(login:String) extends LazyLogging{    //the Repository owner has a mandatory field of login
+  logger.debug("RepositoryOwner object is created.")
   private var loginName = "\\\""+login+"\\\""
   private var ownerquery=s"repositoryOwner(login:$loginName) { "  //setting login
   def setRepository(repository: Repository):RepositoryOwner={   // repository owner has nested repository

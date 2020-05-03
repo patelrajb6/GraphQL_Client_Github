@@ -18,16 +18,16 @@ class RepoOwnerTest extends TestCase{
           .getcreatedAt().getname().gethasIssuesEnabled().getnameWithOwner())) //all the getter of repository
       .build()    //building the query
 
-    val jVal = QueryObject.addHeaders().getGqlRequestResponse(ownerdemo).getJValue().get
+    val jVal = QueryObject().addHeaders().getGqlRequestResponse(ownerdemo).getJValue()
     val repoObj = jVal \"data" \ "repositoryOwner" \ "repository"
-    println(repoObj)
+   // println(repoObj)
     val createdGot = repoObj.children(0).extract[String]              // the order is the same as from the builder call****
     val nameGot = repoObj.children(1).extract[String]
     val hasIssuesGot = repoObj.children(2).extract[Boolean]
     val nameWithOwnerGot = repoObj.children(3).extract[String]
 
     //now parse out with the case class
-    val parseCase = repoObj.extract[RepositoryCase]
+    val parseCase = JsonToScala(jVal).getRepoOwnerQueryCaseClass().repository
 
     //assert
     assertEquals(createdGot,parseCase.createdAt.get)

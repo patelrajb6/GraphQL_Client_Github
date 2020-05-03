@@ -1,6 +1,8 @@
-class Topic(name:String) {      // the mandatory string for the Topic
-  private var name1="\\\""+name+"\\\""
+import com.typesafe.scalalogging.LazyLogging
 
+class Topic(name:String) extends LazyLogging {      // the mandatory string for the Topic
+  logger.debug("Topic object is created.")
+  private var name1="\\\""+name+"\\\""
   private var query=s"topic(name:$name1) {" //building string
   def setStarGrazers(stargazerConnection: StargazerConnection):this.type={  //has nested stargazer
     query+=s"${stargazerConnection.build()} "

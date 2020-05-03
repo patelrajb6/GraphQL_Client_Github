@@ -15,19 +15,19 @@ class RepoOwnerTest2 extends TestCase {
           .getcreatedAt().getDescription().getname()))
       .build()
 
-    val jVal = QueryObject.addHeaders().getGqlRequestResponse(createdAtDemo).getJValue().get
+    val jVal = QueryObject().addHeaders().getGqlRequestResponse(createdAtDemo).getJValue()
     val createdAtObj = jVal \ "data" \ "repositoryOwner" \ "repository"
     val createdAt = createdAtObj.children(0).extract[String]    // this extracts the created at value from jVal
     val description = createdAtObj.children(1).extract[String]
     val name = createdAtObj.children(2).extract[String]
 
     // extract into case class
-    val root = jVal.extract[RootInterface]
+    val root = JsonToScala(jVal).getRepoOwnerQueryCaseClass()
 
     // assert what was queried for
-    assertTrue(root.data.repositoryOwner.get.repository.createdAt.get == createdAt)
-    assertTrue(root.data.repositoryOwner.get.repository.description.get == description)
-    assertTrue(root.data.repositoryOwner.get.repository.name.get == name)
+    assertTrue(root.repository.createdAt.get == createdAt)
+    assertTrue(root.repository.description.get == description)
+    assertTrue(root.repository.name.get == name)
   }
 
 }

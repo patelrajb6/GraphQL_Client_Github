@@ -17,14 +17,14 @@ class RepoTest extends TestCase{
         .getname().getpushedAt().getupdatedAt())//repository has name and description
       .build()
 
-    val jVal = QueryObject.addHeaders().getGqlRequestResponse(repoDemo).getJValue().get
+    val jVal = QueryObject().addHeaders().getGqlRequestResponse(repoDemo).getJValue()
     val repoObj = jVal \ "data" \ "repository"
     val nameGot = repoObj.children(0).extract[String]
     val pushedGot = repoObj.children(1).extract[String]
     val updateGot = repoObj.children(2).extract[String]
 
     //extract
-    val extracted = repoObj.extract[RepositoryCase]
+    val extracted = JsonToScala(jVal).getRepoQueryCaseClass()
 
     assertEquals(nameGot,extracted.name.get)
     assertEquals(pushedGot,extracted.pushedAt.get)
