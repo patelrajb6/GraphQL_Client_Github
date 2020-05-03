@@ -17,7 +17,7 @@ class RepoTest extends TestCase{
         .getname().getpushedAt().getupdatedAt())//repository has name and description
       .build()
 
-    val jVal = Tools.getJValue(Tools.getGqlRequestResponse(repoDemo)).get
+    val jVal = QueryObject.addHeaders().getGqlRequestResponse(repoDemo).getJValue().get
     val repoObj = jVal \ "data" \ "repository"
     val nameGot = repoObj.children(0).extract[String]
     val pushedGot = repoObj.children(1).extract[String]

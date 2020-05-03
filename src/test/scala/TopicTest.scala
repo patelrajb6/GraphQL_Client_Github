@@ -17,7 +17,7 @@ class TopicTest extends TestCase{
         .gettotalCount().setNodeList(new User().getlogin()))) //stargazer contains total count and list of nodes which are user so nested again with login
       .build()  //building the whole query
 
-    val jVal = Tools.getJValue(Tools.getGqlRequestResponse(topicdemo)).get
+    val jVal =   QueryObject.addHeaders().getGqlRequestResponse(topicdemo).getJValue().get
     val topicObj = jVal \ "data" \ "topic"
     val stargazersCon = topicObj.children(1)                                //stargazerCon from response
     val stargazersCount = stargazersCon.children(0).extract[Int]           //get the stargazer count

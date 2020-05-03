@@ -1,16 +1,9 @@
 import net.liftweb.json.JsonAST.JValue
 import net.liftweb.json._
 
-class JsonToScala(private var json:String) {
+class JsonToScala(private var json:JValue) {
   implicit val formats = DefaultFormats
-
-  val casetype= Seq("repository","repositoryOwner","topic")
-  var jValue:JValue=_
-
-  def parseJson()={
-    jValue=parse(json)
-    this
-  }
+  var jValue:JValue= json
 
   //for the user if they dont know the type of the query
   def getScalaClass(): CaseClass= {
