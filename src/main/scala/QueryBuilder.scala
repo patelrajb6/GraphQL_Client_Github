@@ -21,3 +21,4 @@ class QueryBuilder {    //the main querybuilder class
     query
   }
 }
+

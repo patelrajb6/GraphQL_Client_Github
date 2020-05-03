@@ -4,7 +4,7 @@ case class RepositoryCase(description: Option[String], name: Option[String],
                        hasProjectEnabled:Option[Boolean],hasWikiEnabled:Option[Boolean],
                        isArchived:Option[Boolean],isFork:Option[Boolean],
                        isLocked:Option[Boolean],isMirror:Option[Boolean],
-                       isPrivate:Option[Boolean],nameWithOwner:Option[Boolean],
+                       isPrivate:Option[Boolean],nameWithOwner:Option[String],
                        pushedAt:Option[String],updatedAt:Option[String],createdAt:Option[String]) extends CaseClass
 case class Stargazers(totalCount: Option[Int], nodes: Option[Seq[UserCase]])             //not sure if List or Seq and also if should be a list of users...
 

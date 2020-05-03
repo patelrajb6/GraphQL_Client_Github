@@ -82,3 +82,4 @@ class Repository(owner:String,name:String) extends RepositoryInfo[Repository] { 
   }
 
 }
+
