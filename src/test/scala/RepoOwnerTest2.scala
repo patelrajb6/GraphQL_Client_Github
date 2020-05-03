@@ -4,17 +4,22 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class RepoOwnerTest2 extends TestCase {
+  private implicit val formats = DefaultFormats
+
   @Test
   def testRepoOwner2(): Unit ={
-    implicit val formats = DefaultFormats
+    // arrange variables
     val owner = "ramirez915"
     val repo = "BioE-CS-494"
+
+    // building query
     val createdAtDemo = new QueryBuilder()
       .setRepositoryOwnerQuery(new RepositoryOwner(owner)
         .setRepository(new Repository(repo)
           .getcreatedAt().getDescription().getname()))
       .build()
 
+    // extract data from queries
     val jVal = QueryObject().addHeaders().getGqlRequestResponse(createdAtDemo).getJValue()
     val createdAtObj = jVal \ "data" \ "repositoryOwner" \ "repository"
     val createdAt = createdAtObj.children(0).extract[String]    // this extracts the created at value from jVal

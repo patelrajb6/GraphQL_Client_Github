@@ -8,8 +8,10 @@ class TopicTest extends TestCase{
 
   @Test
   def testTopics(): Unit ={
+    // variables to use for query
     val topicName = "android"
     val firstAmount = 2
+
     //the topic query builder
     val topicdemo= new QueryBuilder()
       .setTopicQuery(new Topic(topicName) //set the topic name
@@ -17,6 +19,7 @@ class TopicTest extends TestCase{
         .gettotalCount().setNodeList(new User().getlogin()))) //stargazer contains total count and list of nodes which are user so nested again with login
       .build()  //building the whole query
 
+    // extract values from query to use for comparison
     val jVal =   QueryObject().addHeaders().getGqlRequestResponse(topicdemo).getJValue()
     val topicObj = jVal \ "data" \ "topic"
     val stargazersCon = topicObj.children(1)                                //stargazerCon from response
@@ -24,7 +27,6 @@ class TopicTest extends TestCase{
 
     // parse jvalue and put it into the case class
     val root = JsonToScala(jVal).getTopicQueryCaseClass()
-    //    println(root.data.topic.get.stargazers.get.nodes.get(0).login)
 
     //assert
     assertTrue(root.name.get == topicName)

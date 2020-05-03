@@ -1,3 +1,3 @@
-[0m[[0m[0mdebug[0m] [0m[0m"not up to date. inChanged = true, force = false[0m
-[0m[[0m[0mdebug[0m] [0m[0mUpdating ProjectRef(uri("file:/Users/raj/Desktop/cs474_courseproject/project/"), "cs474_courseproject-build")...[0m
-[0m[[0m[0mdebug[0m] [0m[0mDone updating ProjectRef(uri("file:/Users/raj/Desktop/cs474_courseproject/project/"), "cs474_courseproject-build")[0m
+[debug] "not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/C:/Users/josea/Documents/bitBucket/cs474/cs474_courseproject/project/"), "cs474_courseproject-build")...
+[debug] Done updating ProjectRef(uri("file:/C:/Users/josea/Documents/bitBucket/cs474/cs474_courseproject/project/"), "cs474_courseproject-build")
