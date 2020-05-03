@@ -13,9 +13,9 @@ object Main extends App with LazyLogging {
       .getname())
     .build()
 
-  val result= QueryObject.addHeaders().getGqlRequestResponse(d).getJValue().get
+  val result= QueryObject().getGqlRequestResponse(d).getJValue()
   val scalacClass= new JsonToScala(result).getScalaClass()
-  println(scalacClass)
+
  // println(d)
 
 }

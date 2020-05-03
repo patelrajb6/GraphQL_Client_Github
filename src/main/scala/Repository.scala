@@ -1,5 +1,7 @@
-class Repository(owner:String,name:String) extends RepositoryInfo[Repository] { //this class is templated is extending trait repositoryinfo
+import com.typesafe.scalalogging.LazyLogging
 
+class Repository(owner:String,name:String) extends RepositoryInfo[Repository] with LazyLogging { //this class is templated is extending trait repositoryinfo
+  logger.debug("Repository object is created.")
   def this( name:String)={    //auxilary constructor (this can also be done in easier way)
     this(null,name)
   }

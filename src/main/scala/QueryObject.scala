@@ -6,7 +6,7 @@ import org.apache.http.impl.client.HttpClientBuilder
 
 import scala.io.Source
 
-object QueryObject {
+class QueryObject {
   implicit val formats = DefaultFormats
   private val BASE_GHQL_URL = "https://api.github.com/graphql"
   // val TOKEN = "b24f584000aa47629266eac2857f9d0ab618ddde"
@@ -20,6 +20,7 @@ object QueryObject {
     this
   }
 
+
   def addHeaders():this.type={
     httpUriRequest.addHeader("Authorization", "Bearer "+ TOKEN)
     httpUriRequest.addHeader("Accept", "application/json")
@@ -32,22 +33,25 @@ object QueryObject {
 
     httpUriRequest.setEntity(gqlReq)
     response = client.execute(httpUriRequest)
+    client.close()
     this
   }
 
-  def getJValue(): Option[JValue] ={
-    // println("Response:" + response)
+  def getJValue(): JValue ={
     response.getEntity match {
       case null => null
       case x if x != null => {
         val respJson = Source.fromInputStream(x.getContent).getLines.mkString
-
-        //        println("response "+respJson)
         val jValue = parse(respJson)
-        println("jval "+ jValue)
         response.close()
-        Some(jValue)
+       jValue
+
       }
     }
+
   }
+}
+
+object QueryObject {
+  def apply(): QueryObject = new QueryObject()
 }

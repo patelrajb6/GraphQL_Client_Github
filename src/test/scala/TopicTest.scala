@@ -17,18 +17,18 @@ class TopicTest extends TestCase{
         .gettotalCount().setNodeList(new User().getlogin()))) //stargazer contains total count and list of nodes which are user so nested again with login
       .build()  //building the whole query
 
-    val jVal =   QueryObject.addHeaders().getGqlRequestResponse(topicdemo).getJValue().get
+    val jVal =   QueryObject().addHeaders().getGqlRequestResponse(topicdemo).getJValue()
     val topicObj = jVal \ "data" \ "topic"
     val stargazersCon = topicObj.children(1)                                //stargazerCon from response
     val stargazersCount = stargazersCon.children(0).extract[Int]           //get the stargazer count
 
     // parse jvalue and put it into the case class
-    val root = jVal.extract[RootInterface]
+    val root = JsonToScala(jVal).getTopicQueryCaseClass()
     //    println(root.data.topic.get.stargazers.get.nodes.get(0).login)
 
     //assert
-    assertTrue(root.data.topic.get.name.get == topicName)
-    assertTrue(root.data.topic.get.stargazers.get.totalCount.get == stargazersCount)
-    assertTrue(root.data.topic.get.stargazers.get.nodes.get.length == firstAmount)
+    assertTrue(root.name.get == topicName)
+    assertTrue(root.stargazers.get.totalCount.get == stargazersCount)
+    assertTrue(root.stargazers.get.nodes.get.length == firstAmount)
   }
 }

@@ -17,5 +17,6 @@ libraryDependencies ++= Seq (
   "io.spray" %%  "spray-json" % "1.3.5",
   //unit testing
   "junit" % "junit" % "4.8.1" % "test",
-  "org.scalatest" %% "scalatest" % "3.3.0-SNAP2" % Test
+  "com.novocode" % "junit-interface" % "0.11" % Test
+ // "org.scalatest" %% "scalatest" % "3.3.0-SNAP2" % Test
 )
