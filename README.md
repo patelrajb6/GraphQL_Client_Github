@@ -1,5 +1,5 @@
 # Course Project
-# [please click here](ScalaDocs/index.html)
+# [please click here](https://bitbucket.org/jramir93/cs474_courseproject/src/master/ScalaDocs/index.html)
 ### Description: object-oriented pure functional design and implementation of a [GraphQL](https://graphql.org) client framework for [Github](https://github.com/) as an I/O monad.
 ### Grade: 25% with some small bonus - read below.
 #### You can obtain this Git repo using the command git clone git@bitbucket.org:cs474_spring2020/courseproject.git.
