@@ -4,11 +4,11 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ScaladocSettings">
-    <option name="outputDir" value="$PROJECT_DIR$" />
+    <option name="outputDir" value="$PROJECT_DIR$/ScalaDOcs2" />
     <option name="additionalFlags" value="" />
     <option name="maxHeapSize" value="" />
     <option name="docTitle" value="cs474_courseproject documentation" />
     <option name="verbose" value="false" />
-    <option name="openInBrowser" value="false" />
+    <option name="openInBrowser" value="true" />
   </component>
 </project>

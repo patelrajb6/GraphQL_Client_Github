@@ -2,7 +2,7 @@ class User{   //the user class
   private var repoQuery="{"
 
   //attributes that can be grabbed from the api
-  def getLocation():User={
+  def getLocation():User= {
     repoQuery=repoQuery+" location "
     this
   }
