@@ -19,9 +19,9 @@
       * getLocation ->gives the location if available else null
       * getlogin-> gives the github id
       * getname ->gives the name of the user
-      * setRepository(Builder.Repository) -> set the Builder.Repository in order to get information about that particular Repo
+      * setRepository(Repository) -> set the Repository in order to get information about that particular Repo
   
-    * Repository Query ->Gives information about the any Github Builder.Repository.  ********requires (login , repository name)******
+    * Repository Query ->Gives information about the any Github Repository.  ********requires (login , repository name)******
       * description: Option[String] 
       * name: Option[String]
       * forkCount:Option[Int]
@@ -39,18 +39,18 @@
       * createdAt:Option[String]
   
     * Repository Owner Query -> Gives information about any Builder.Repository owner.  ********requires(login)********
-      * repository: Builder.Repository (from Builder.Repository Query). *****requires(repo name)******
+      * repository: Repository (from Repository Query). *****requires(repo name)******
       * login:Option[String]
       * id:Option[String]
   
-    * Topic Query -> Gives information about the Topics in Github a particular one.     ******requires (Builder.Topic name)*******
+    * Topic Query -> Gives information about the Topics in Github a particular one.     ******requires (Topic name)*******
       * name: Option[String]
       * id: Option[String]
-      * stargazers: Option[Parser.Stargazers] -> ******requires (first | last | after | before) any one of the parameter*****
+      * stargazers: Option[Stargazers] -> ******requires (first | last | after | before) any one of the parameter*****
         * totalCount: Option[Int]
         *  nodes: Option[Seq[Builder.User]]
 
-    Methods are with set and get prefix used in the frame work (Exceptions: Stargazer, Builder.Repository):
+    Methods are with set and get prefix used in the frame work (Exceptions: Stargazer, Repository):
     * Set prefix means the below required arguments needs to set first in order to get info.
     * Get prefix will be used to get the information.
     * For setting stargazer, repository in subquery, constructor can be used directly for setting the value.
@@ -59,25 +59,25 @@
 ### Example Queries:  
     1. User Query
         code :  
-            new Builder.QueryBuilder()  
-                .setUserQuery(new Builder.User()  
+            new QueryBuilder()  
+                .setUserQuery(new User()  
                     .getname()  
-                    .setRepository(new Builder.Repository(X)  
+                    .setRepository(new Repository(X)  
                         .getname()))  
             .build()  
         Query Generated: {  
                             { name    
-                              repository(name:\"Baccarat_game\")   
+                              repository(name:\"X\")   
                                 { name   
                                 }  
                             }   
                         }  
     2. Topic Query  
      code :  
-          new Builder.QueryBuilder()  
-                .setTopicQuery(new Builder.Topic("android")
-                    .setStarGrazers(new Builder.StargazerConnection(first = 3)
-                        .setNodeList(new Builder.User().getname())))  
+          new QueryBuilder()  
+                .setTopicQuery(new Topic("android")
+                    .setStarGrazers(new StargazerConnection(first = 3)
+                        .setNodeList(new User().getname())))  
             .build()   
         Query Generated: {
                             topic(name:\"android\") 
@@ -89,8 +89,8 @@
                         } 
     3. Repository Query
     code :  
-          new Builder.QueryBuilder()  
-                .setRepositoryQuery(new Builder.Repository("patelrajb6","Baccarat_game")
+          new QueryBuilder()  
+                .setRepositoryQuery(new Builder.Repository("X","Y")
                     .getname()) 
             .build() ```  
         Query Generated: { 
@@ -99,14 +99,14 @@
                         }
     4. Repository Owner Query
     code :  
-          ```new Builder.QueryBuilder()  
-                .setRepositoryOwnerQuery(new Builder.RepositoryOwner(owner)  
-                    .setRepository(new Builder.Repository(repo)    
+          new QueryBuilder()  
+                .setRepositoryOwnerQuery(RepositoryOwner(Y)  
+                    .setRepository(Repository(X)    
                         .getcreatedAt().getname().gethasIssuesEnabled().getnameWithOwner()))
             .build()   
         Query Generated: {
-                            repositoryOwner(login:\"patelrajb6\") {  
-                                repository(name:\"Baccarat_Game\") { 
+                            repositoryOwner(login:\"Y\") {  
+                                repository(name:\"X\") { 
                                     createdAt  
                                     name  
                                     hasIssuesEnabled  
@@ -116,7 +116,7 @@
                         }    
       
 ### Using the Framework:  
-    1. Download or Clone the Builder.Repository  
+    1. Download or Clone the Repository  
     2. Use SBT Tool to check the testing of framework(optional)  
     3. Using SBT on commandline   
         * sbt clean compile test (to run the tests)
