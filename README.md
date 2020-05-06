@@ -7,7 +7,7 @@
 ### Description: 
     This framework consists of 3 parts.
     1. Query making
-        * The Queries are build with Builder Design Pattern which is abstracting the raw String from the Builder.User 
+        * The Queries are built with Builder Design Pattern which is abstracting the raw String from the Builder.User 
     2. executing the query and getting the results from the GitHub
         * The Query made by the user is then passed to the GithubConnector.QueryObject where the Query is executed and http response is recieved
     3. Parsing the Queries into Scala Case Classes.
@@ -16,39 +16,39 @@
 ### Supported Commands :
 
     * User Query-> Gives information about the current user.
-      * getLocation ->gives the location if available else null
-      * getlogin-> gives the github id
-      * getname ->gives the name of the user
-      * setRepository(Repository) -> set the Repository in order to get information about that particular Repo
+      * getLocation -> gives the location if available else null
+      * getlogin-> gives the github username
+      * getname -> gives the name of the user if available
+      * setRepository(Repository) -> set the Repository using its name in order to get information about that particular Repo
   
-    * Repository Query ->Gives information about the any Github Repository.  ********requires (login , repository name)******
+    * Repository Query -> Gives information about any Github Repository.  ********requires (login , repository name)******
       * description: Option[String] 
       * name: Option[String]
-      * forkCount:Option[Int]
-      * hasIssuesEnabled:Option[Boolean]
-      * hasProjectEnabled:Option[Boolean]
-      * hasWikiEnabled:Option[Boolean]
-      * isArchived:Option[Boolean]
-      * isFork:Option[Boolean]
-      * isLocked:Option[Boolean]
-      * isMirror:Option[Boolean]
-      * isPrivate:Option[Boolean]
-      * nameWithOwner:Option[String]
-      * pushedAt:Option[String]
-      * updatedAt:Option[String]
-      * createdAt:Option[String]
+      * forkCount: Option[Int]
+      * hasIssuesEnabled: Option[Boolean]
+      * hasProjectEnabled: Option[Boolean]
+      * hasWikiEnabled: Option[Boolean]
+      * isArchived: Option[Boolean]
+      * isFork: Option[Boolean]
+      * isLocked: Option[Boolean]
+      * isMirror: Option[Boolean]
+      * isPrivate: Option[Boolean]
+      * nameWithOwner: Option[String]
+      * pushedAt: Option[String]
+      * updatedAt: Option[String]
+      * createdAt: Option[String]
   
     * Repository Owner Query -> Gives information about any Builder.Repository owner.  ********requires(login)********
       * repository: Repository (from Repository Query). *****requires(repo name)******
-      * login:Option[String]
-      * id:Option[String]
+      * login: Option[String]
+      * id: Option[String]
   
-    * Topic Query -> Gives information about the Topics in Github a particular one.     ******requires (Topic name)*******
+    * Topic Query -> Gives information about a particular Topic on Github.     ******requires (Topic name)*******
       * name: Option[String]
       * id: Option[String]
       * stargazers: Option[Stargazers] -> ******requires (first | last | after | before) any one of the parameter*****
         * totalCount: Option[Int]
-        *  nodes: Option[Seq[Builder.User]]
+        * nodes: Option[Seq[Builder.User]]
 
     Methods are with set and get prefix used in the frame work (Exceptions: Stargazer, Repository):
     * Set prefix means the below required arguments needs to set first in order to get info.
