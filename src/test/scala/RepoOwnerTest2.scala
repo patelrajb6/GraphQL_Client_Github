@@ -1,3 +1,6 @@
+import Builder.{QueryBuilder, Repository, RepositoryOwner}
+import GithubConnector.QueryObject
+import Parser.JsonToScala
 import junit.framework.TestCase
 import net.liftweb.json.DefaultFormats
 import org.junit.Assert.assertTrue

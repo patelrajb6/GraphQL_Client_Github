@@ -1,3 +1,6 @@
+import Builder.{QueryBuilder, StargazerConnection, Topic, User}
+import GithubConnector.QueryObject
+import Parser.JsonToScala
 import junit.framework.TestCase
 import net.liftweb.json.DefaultFormats
 import org.junit.Test

@@ -1,3 +1,6 @@
+import Builder.{QueryBuilder, Repository, RepositoryOwner}
+import GithubConnector.QueryObject
+import Parser.JsonToScala
 import junit.framework.TestCase
 import net.liftweb.json.DefaultFormats
 import org.junit.Test
@@ -21,7 +24,7 @@ class RepoOwnerTest extends TestCase{
         .setRepository(new Repository(repo)    //needs name of the particular repository to search for
           .getcreatedAt().getname().gethasIssuesEnabled().getnameWithOwner())) //all the getter of repository
       .build()    //building the query
-
+    println(ownerdemo)
     // extract data from query to use for checking
     val jVal = QueryObject().addHeaders().getGqlRequestResponse(ownerdemo).getJValue()
     val repoObj = jVal \"data" \ "repositoryOwner" \ "repository"

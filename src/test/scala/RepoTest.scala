@@ -1,3 +1,6 @@
+import Builder.{QueryBuilder, Repository}
+import GithubConnector.QueryObject
+import Parser.JsonToScala
 import junit.framework.TestCase
 import net.liftweb.json.DefaultFormats
 import org.junit.Test
@@ -12,7 +15,7 @@ class RepoTest extends TestCase{
     val owner = "patelrajb6"
     val repoName = "Baccarat_Game"
 
-    //Repository only query
+    //Builder.Repository only query
     val repoDemo= new QueryBuilder()
       .setRepositoryQuery(new Repository(owner,repoName)  //setting the query needs a repository object
         .getname().getpushedAt().getupdatedAt())//repository has name and description
